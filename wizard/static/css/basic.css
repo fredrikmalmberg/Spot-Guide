@@ -1,0 +1,27 @@
+/* This is for the sliding wizard*/
+
+* { Box-sizing: Border-box }
+.mycontainer{
+    white-space: nowrap;
+    overflow-x: hidden;
+    width: 100%;
+    background-color: blue;
+}
+
+.innerLiner {
+    background-color: gray;
+}
+.box{
+    display: inline-block;
+    border: 2px black solid;
+    padding: 20px;
+    width: 50%;
+    height: 300px;
+    vertical-align: top;
+    /*background-color: pink;*/
+}
+
+/*
+.box2{
+    background-color: yellow;
+}*/
