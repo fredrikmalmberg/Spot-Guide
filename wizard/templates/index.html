@@ -9,25 +9,91 @@
 	  <span class="box">
       {{ q.question }}
       
+      
       {% for answer in q.answer_set.all %}
-		 <p>{{answer.text }}</p>
+		 <div class="btn check_answer_{{answer.id}} nextBtn" type="button">{{answer.text }}</div>
+		 
 	  {% endfor %}
 	  {% if not forloop.first %}
       <input class="backBtn" type="button" value="Back">
       {% endif %}
-      <input class="nextBtn" type="button" value="Next">
+      
     </span>
   {% endfor %}
     <span class="box">
-      <input class="nextBtn" type="button" value="Submit">
+      <label for="email">Enter your email:</label>
+      <form action="" method="post">
+      	{% csrf_token %}
+      	  {% for q in questions %}
+	        <fieldset id="question{{q.id}}">
+	        {% for answer in q.answer_set.all %}
+	           <input type="hidden" id="answer_{{answer.id}}" value="{{answer.text}}" name="question{{q.id}}">
+	        {% endfor %}
+	        </fieldset>
+	      {% endfor %}
+
+
+          <input type="email" name="email" id="email" size="30" required>
+          <input type="button" onclick="showForm()">
+          <button type="submit">Show me the values!</button>
+      </form>
+    </div>
     </span>
+
+
 
 
   </div>
 
 </div>
+
+
+<div id="demo"></div>
+
+<!-- Hidden input form 
+<form action="" id="form" method="post">
+	{% for q in questions %}
+	<fieldset id="question{{q.id}}">
+	   {% for answer in q.answer_set.all %}
+	   <label><input type="hidden" id="answer_{{answer.id}}" value="{{answer.text}}" name="question{{q.id}}">{{answer.text}}</label>
+	   {% endfor %}
+	</fieldset>
+	{% endfor %}
+</form>-->
+
+
+
 <script>
-	$( ".nextBtn" ).click(function(e) {
+
+//FILL OUT FORM
+$(document).ready(function(){
+	{% for q in questions %}
+      {% for answer in q.answer_set.all %}
+    $(".check_answer_{{answer.id}}").click(function(){
+    	console.log(".answer_{{answer.text}}");
+        $("#answer_{{answer.id}}").prop("checked", true);
+    });
+    {% endfor %}
+    {% endfor %}
+});
+
+//SHOW FORM
+function showForm() {
+  var x = document.getElementById("form");
+  var text = "";
+  var i;
+  for (i = 0; i < x.length ;i++) {
+  	if ((x.elements[i] instanceof HTMLInputElement)  && (x.elements[i].checked)) {
+  		text += x.elements[i].value + "<br>";
+  	}
+  }
+  //this is where the output happens
+  document.getElementById("demo").innerHTML = text;
+}
+
+
+//MAKE IT SLIDE
+$( ".nextBtn" ).click(function(e) {
 	goRight();
 });
 $( ".backBtn" ).click(function(e) {
@@ -45,6 +111,10 @@ function goLeft(){ // inner stuff slides right
 	var newLeftMargin = (initalLeftMargin + $( ".innerLiner" ).width()/2+4); // extra 2 for border
 	$( ".innerLiner" ).animate({marginLeft: newLeftMargin}, 500);
 }
+
+
+
+
 </script>
 
 

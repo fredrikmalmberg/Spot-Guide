@@ -3,6 +3,7 @@
 <head>
 	{% load static %}
 	<link rel="stylesheet" href="{% static 'css/basic.css' %}">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 	{% block head %}
 	<title></title>
 	{% endblock%}
@@ -12,8 +13,16 @@
   crossorigin="anonymous"></script>
 </head>
 <body>
+    {% block navigation %}
+	<h1>Navigation from base</h1>
+	{% endblock%}
+
 	{% block content %}
 	<h1>Test from base</h1>
+	{% endblock%}
+
+	{% block footer %}
+	<h1>Footer from base</h1>
 	{% endblock%}
 
 </body>

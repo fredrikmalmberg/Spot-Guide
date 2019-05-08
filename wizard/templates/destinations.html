@@ -1,0 +1,9 @@
+
+{% extends "base.html" %}
+{% block content %}
+{{ old_post }}
+<br>
+{% for d in destinations%}
+{{d.name}}
+{%endfor%}
+{% endblock %}

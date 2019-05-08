@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from wizard.models import Question, Answer
+from wizard.models import Question, Answer, Destination
 
 
 admin.site.register(Answer)
@@ -15,3 +15,8 @@ class AnswerInline(admin.TabularInline):
 class QuestionAdmin(admin.ModelAdmin):
     
     inlines = [AnswerInline]
+
+
+@admin.register(Destination)
+class DestinationAdmin(admin.ModelAdmin):   
+    fields = ['name']
