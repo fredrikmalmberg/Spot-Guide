@@ -28,22 +28,26 @@ def index(request):
 
     else:    
         print("requested index")
-        print("Loading index with old_post:" + str(request.session['_old_post']))
+        #print("Loading index with old_post:" + str(request.session['_old_post']))
         old_post = request.session.get('_old_post')
-        persona = find_persona(old_post)
-        
-        if old_post == {}:
-            print("dont know this person")
-            #request.session['_known']=False
-            
-        else:
-            print("know this person")
-            #request.session['_known']=True
+        #persona = find_persona(old_post)
         form = NewForm(request.GET)
         num_questions = Question.objects.count() + 2
         box_width = 100/(num_questions)
         progress_width = 100/(num_questions-2)
-        context = {'destinations' : Destination.objects.filter(persona=persona), 'progress_width': progress_width,'box_width': box_width, 'known': request.session['_known'], 'form': form, 'questions' : Question.objects.all().order_by('-priority'), 'num_questions' : num_questions}
+        if request.session.get('_known') == True:
+            print("we know this person")
+            persona = find_persona(old_post)
+            context = {'destinations' : Destination.objects.filter(persona=persona), 'progress_width': progress_width,'box_width': box_width, 'known': request.session['_known'], 'form': form, 'questions' : Question.objects.all().order_by('-priority'), 'num_questions' : num_questions}
+
+            
+        else:
+            print("we don't know this person")
+            request.session['_known']=False
+            persona = None
+            context = {'destinations' : Destination.objects.filter(persona=persona), 'progress_width': progress_width,'box_width': box_width, 'known': request.session['_known'], 'form': form, 'questions' : Question.objects.all().order_by('-priority'), 'num_questions' : num_questions}
+
+        
         #request.session['_old_post'] = request.POST
         print("before final render and known is:")
         print(request.session['_known'])

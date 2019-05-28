@@ -26,7 +26,7 @@ SECRET_KEY = 'mj-+%*k0(61okn)^4@@(@%f46d!e52=8o0lnunmo9@xq!qaia@'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1','13.48.78.220']
 
 
 # Application definition
@@ -40,8 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'wizard.apps.WizardConfig', 
     #'formtools',
-    'sass_processor',
-    'easy_maps',
+    #'sass_processor',
+    #'easy_maps',
 ]
 
 MIDDLEWARE = [
@@ -129,7 +129,7 @@ USE_TZ = True
 STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-    'sass_processor.finders.CssFinder',
+    #'sass_processor.finders.CssFinder',
 ]
 
 # Static files (CSS, JavaScript, Images)
@@ -141,5 +141,5 @@ SASS_PROCESSOR_ROOT = STATIC_ROOT
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'wizard/media/')
 
-EASY_MAPS_GOOGLE_KEY = 'AIzaSyCVLiTqt9ukyVy09Zlq-cfnaq4VQg5jMnk'
-EASY_MAPS_CENTER = (-41.3, 32)
+#EASY_MAPS_GOOGLE_KEY = 'AIzaSyCVLiTqt9ukyVy09Zlq-cfnaq4VQg5jMnk'
+#EASY_MAPS_CENTER = (-41.3, 32)
