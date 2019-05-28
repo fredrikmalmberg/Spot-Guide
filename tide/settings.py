@@ -26,7 +26,7 @@ SECRET_KEY = 'mj-+%*k0(61okn)^4@@(@%f46d!e52=8o0lnunmo9@xq!qaia@'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1','13.48.78.220']
+ALLOWED_HOSTS = ['127.0.0.1','13.48.78.220', 'www.spot.guide']
 
 
 # Application definition
