@@ -1,9 +1,208 @@
 
-{% extends "base.html" %}
-{% block content %}
-{{ old_post }}
-<br>
+
+{% if known %}
+<!-- Portfolio Grid -->
+<header class="masthead"> </header>
+
+<section class="mid page-section" id="portfolio">
+
+
+  <div class="container">
+    <div class="row">
+      <form action="" method="post" id="reset">
+   {% csrf_token %}
+   <input type="hidden" name="reset" value="True"><br>
+ </form>
+ 
+ 
+ 
+
+
+
+      <div class="col-lg-12 text-center">
+
+        <h2 class="section-heading text-uppercase">
+        
+        Done!</h2>
+        
+
+        <h3 class="section-subheading text-muted">
+          {% if destinations.all|length == 0 %}
+        No destinations found.. :(
+        {% else %}
+        We found {{ destinations.all|length}} awesome destinations for you
+        {% endif %}
+
+
+        </h3>
+      </div>
+    </div>
+    <div class="row">
+
+
+      {% for d in destinations%}
+      <div class="col-md-4 col-sm-6 portfolio-item">
+        <a class="portfolio-link" data-toggle="modal" href="#portfolioModal{{d.id}}">
+          <div class="portfolio-hover">
+            <div class="portfolio-hover-content">
+              <i class="fas fa-plus fa-3x"></i>
+            </div>
+          </div>
+          <img class="img-fluid" src="{{d.main_image.url}}" alt="">
+        </a>
+        <div class="portfolio-caption">
+          <h4>{{d.name}}</h4>
+          <p class="text-muted">{{d.description}}</p>
+        </div>
+      </div>
+      {%endfor%}
+      
+
+    </div>
+  </div>
+  <button type="submit" class="restartBtn fas fa-undo" form="reset" value="Submit" alt="Start over"><br><h3>Start over</h3></button>
+</section>
+
+
+
+{% endif %}
+
+<!-- Modals -->
+
 {% for d in destinations%}
-{{d.name}}
-{%endfor%}
-{% endblock %}
+<div class="portfolio-modal modal fade" id="portfolioModal{{d.id}}" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+        <!--<div class="close-modal" data-dismiss="modal">
+          <div class="lr">
+            <div class="rl"></div>
+          </div>
+        </div>-->
+        <button data-dismiss="modal" id="close-button" aria-label="Close" class="baguetteBox-button"><svg width="30" height="30"><g stroke="rgb(160,160,160)" stroke-width="4"><line x1="5" y1="5" x2="25" y2="25"></line><line x1="5" y1="25" x2="25" y2="5"></line></g></svg></button>
+
+        <div class="container">
+          <div class="row">
+            <div class="col-sm mx-auto">
+              <div class="modal-body">
+                <!-- Project Details Go Here  -->
+                <h2 class="text-uppercase">{{d.name}}</h2>
+                <!-- <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p> -->
+                <!-- new shit below -->
+                <div class="container py-2">
+                  <div class="row">
+                    <div class="col-lg-8 offset-lg-2" id="slider">
+                      <div id="myCarousel{{d.id}}" class="myCarousel carousel slide">
+                        <!-- main slider carousel items -->
+                        <div class="carousel-inner">
+                          <div class="active carousel-item" data-slide-number="0">
+                            <img src="{{d.main_image.url}}" class="img-fluid">
+                          </div>
+                          {% for image in d.image_set.all %}
+                          <div class="carousel-item" data-slide-number="{{ forloop.counter }}">
+                            <img src="{{image.image.url}}" class="img-fluid">
+                          </div>
+                          {%endfor%}
+
+                          <a class="carousel-control-prev" href="#myCarousel{{d.id}}" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                          </a>
+                          <a class="carousel-control-next" href="#myCarousel{{d.id}}" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                          </a>
+
+                        </div>
+                        <!-- main slider carousel nav controls -->
+
+
+                        <ul class="carousel-indicators list-inline mx-auto ">
+                          <li class="list-inline-item active">
+                            <a id="carousel-selector-0" class="selected" data-slide-to="0" data-target="#myCarousel{{d.id}}">
+                              <img src="{{d.main_image.url}}" class="img-fluid">
+                            </a>
+                          </li>
+                          {% for image in d.image_set.all %}
+                          <li class="list-inline-item">
+                            <a id="carousel-selector-{{ forloop.counter }}" data-slide-to="{{ forloop.counter }}" data-target="#myCarousel{{d.id}}">
+                              <img src="{{image.image.url}}" class="img-fluid">
+                            </a>
+                          </li>
+                          {%endfor%}
+
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- new shit above -->
+
+                <!-- Page Content -->
+                <div class="container page-top">
+
+
+
+                  <!-- end test -->
+
+                <div class="row">
+                  <div class="col-sm description">
+                  <p>{{d.long_description}}</p>
+
+                  </div>
+               
+
+                  <div class="col-sm description">
+                  <ul class="list-inline">
+                    {% for bullet in d.bulletpoint_set.all %}
+                    <i class="fas fa-check" style="color:black;"></i>{{bullet.text}}
+                    <br>
+                    {% endfor %}
+                  </ul>
+                  
+                  </div>
+                  </div>
+
+                  <div id="map" class= "col-sm" >
+                    {% if d.iframe_map == "None" %}
+                    No map for this destination
+                    {% else %}
+                    <iframe src={{d.iframe_map}} width="100%" height="350" frameborder="0" style="border:0" allowfullscreen></iframe>
+                    {% endif %}
+
+
+                    <!--<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d133784.8572750256!2d15.470691140338468!3d58.403712130133414!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46596e719a049f95%3A0x400fef341e48e70!2sLink%C3%B6ping!5e0!3m2!1sen!2sse!4v1558952427661!5m2!1sen!2sse" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>-->
+
+                  </div>
+                  
+                  <!--<script>
+                    var map;
+                    function initMap() {
+                      map = new google.maps.Map(document.getElementById('map'), {
+                        center: {lat: -34.397, lng: 150.644},
+                        zoom: 8
+                      });
+                    }
+                  </script>
+                  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCVLiTqt9ukyVy09Zlq-cfnaq4VQg5jMnk&callback=initMap"
+                  async defer></script>-->
+
+                  
+                
+                <br>
+                <button class="btn btn-primary" data-dismiss="modal" type="button">
+                    <i class="fas fa-times"></i>Close</button>
+
+
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {%endfor%}
+
+
+
