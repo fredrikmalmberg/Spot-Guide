@@ -12,11 +12,11 @@ def index(request):
 
     # If this is a POST request then process the Form data
     if request.method == 'POST':
-        print("posted to index: ")
-        print(request.POST)
+        #print("posted to index: ")
+        #print(request.POST)
 
         if request.POST['reset'] == 'True':
-            print("resetting")
+            #print("resetting")
             request.session['_known']=False
         else:
             request.session['_old_post'] = request.POST
@@ -27,7 +27,7 @@ def index(request):
 
 
     else:    
-        print("requested index")
+        #print("requested index")
         #print("Loading index with old_post:" + str(request.session['_old_post']))
         old_post = request.session.get('_old_post')
         #persona = find_persona(old_post)
@@ -36,21 +36,21 @@ def index(request):
         box_width = 100/(num_questions)
         progress_width = 100/(num_questions-2)
         if request.session.get('_known') == True:
-            print("we know this person")
+            #print("we know this person")
             persona = find_persona(old_post)
             context = {'destinations' : Destination.objects.filter(persona=persona), 'progress_width': progress_width,'box_width': box_width, 'known': request.session['_known'], 'form': form, 'questions' : Question.objects.all().order_by('-priority'), 'num_questions' : num_questions}
 
             
         else:
-            print("we don't know this person")
+            #print("we don't know this person")
             request.session['_known']=False
             persona = None
             context = {'destinations' : Destination.objects.filter(persona=persona), 'progress_width': progress_width,'box_width': box_width, 'known': request.session['_known'], 'form': form, 'questions' : Question.objects.all().order_by('-priority'), 'num_questions' : num_questions}
 
         
         #request.session['_old_post'] = request.POST
-        print("before final render and known is:")
-        print(request.session['_known'])
+        #print("before final render and known is:")
+        #print(request.session['_known'])
         return render(request, 'index.html', context=context)
 
 # remove this one
@@ -70,13 +70,13 @@ def find_persona(old_post):
     # list with answers
     if old_post:
         answers = [v for v in old_post.values()][1:]
-        print("here are all answers:")
-        for a in answers:
-            print(a)
+        #print("here are all answers:")
+        #for a in answers:
+        #    print(a)
 
 
         personas = Persona.objects.all()
-        print("these are all personas:")
+        #print("these are all personas:")
         
         persona = None
         for p in personas:
@@ -95,9 +95,9 @@ def find_persona(old_post):
                     selected_persona = p
                 else: 
                     match = False
-            print("ending search and match is:")
-            print(match)
-            print(selected_persona)
+            #print("ending search and match is:")
+            #print(match)
+            #print(selected_persona)
 
             if match:
                 persona = p
