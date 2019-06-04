@@ -25,7 +25,7 @@ from django.urls import include
 from django.urls import path
 
 urlpatterns += [
-    path('wizard/', include('wizard.urls')),
+    path('', include('wizard.urls')),
      
 ]
 
