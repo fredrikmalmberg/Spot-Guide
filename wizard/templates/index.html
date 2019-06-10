@@ -174,9 +174,11 @@ function showForm() {
 //MAKE IT SLIDE
 $( ".nextBtn" ).click(function(e) {
 	goRight();
+	mixpanel.track("answered question");
 });
 $( ".backBtn" ).click(function(e) {
 	goLeft();
+	mixpanel.track("went back");
 });
 $( ".undim" ).click(function(e) {
 	$(".color-overlay").css("background-color", "rgba(8, 8, 8, 0.20)");
