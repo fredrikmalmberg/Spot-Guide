@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from wizard.models import Question, Answer, Destination, Persona, Image, BulletPoint, Post
+from wizard.models import Question, Answer, Destination, Persona, Image, BulletPoint, Post, DBBackup
 
 
 admin.site.register(Answer)
@@ -48,5 +48,9 @@ class PersonaAdmin(admin.ModelAdmin):
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
     model = Post
+
+@admin.register(DBBackup)
+class DBBackupAdmin(admin.ModelAdmin):
+    model = DBBackup
 
 

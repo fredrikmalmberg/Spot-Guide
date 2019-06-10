@@ -1,4 +1,6 @@
 from django.db import models
+from django.core.files.storage import FileSystemStorage
+import os
 
 # Create your models here.
 class Question(models.Model):
@@ -41,12 +43,15 @@ class Destination(models.Model):
         default = "No long description has yet been written for this destination"
         )
 
-    main_image = models.ImageField(upload_to='main_images', blank = False)
+    main_image = models.ImageField(
+    	upload_to='main_images', 
+    	blank = False)
 
     iframe_map = models.URLField(
         max_length=500,
         help_text="Paste google maps embedd code here or 'None' if empty",
-        default = "None"
+        default = "maps.google.com"
+
         )
 
 
@@ -71,7 +76,17 @@ class Image(models.Model):
         max_length=200,
         help_text="Enter a caption for the image"
         )
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+UPLOAD_ROOT = os.path.join(os.path.dirname(BASE_DIR), "db_back")
+upload_storage = FileSystemStorage(location=UPLOAD_ROOT, base_url='/does/not/matter/')
 
+class DBBackup(models.Model):
+	dbbackup = models.FileField(upload_to='all_db_backups', storage=upload_storage, blank = False)
+	comment = models.CharField(
+		max_length=200,
+		help_text="Enter a comment")
+	def __str__(self):
+		return self.comment
 
 class Persona(models.Model):
     """Model representing a book genre (e.g. Science Fiction, Non Fiction)."""
