@@ -1,0 +1,266 @@
+/* This is for the sliding wizard*/
+
+* { Box-sizing: Border-box }
+.mycontainer{
+    white-space: nowrap;
+    overflow-x: hidden;
+    width: 100%;
+    
+}
+
+.color-overlay {
+    background: rgba(8, 8, 8, 0.22);  
+}
+.box{
+    display: inline-block;
+    padding: 20px;
+    width: 50%;
+    height: 411px;
+    vertical-align: top;
+    white-space: normal;
+    
+}
+@media (min-width: 992px) {
+    .framed {
+    
+    width: 50%;
+}
+}
+
+.framed {
+    padding: 30px;
+    
+    height: 100%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    background: #00000080;
+    /* border-radius: 11px; */
+    position: relative;
+    /* border: 1px solid #fed035; */
+    white-space: normal;
+}
+
+.progressBar {
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    left: 0px;
+    height: 4px; }
+
+.bars {
+
+    background-color: #FFFFFF40;
+    height: 100%;
+    display: inline-block;
+    float:left;
+}
+
+
+
+
+.backBtn {
+    position: absolute;
+    align-items: center;
+    bottom: 20px;
+    /* margin-right: auto; */
+    left: 20px;
+    /* border: 1px solid; */
+    /* display: block; */
+    line-height: 28px;
+    font-size: 28px;
+    cursor: pointer;
+    /* border-radius: 50%; */
+    color: #ffffff70;
+
+}
+
+.backBtn:hover {
+
+    color: #ffffffff;
+
+}
+
+.restartBtn {
+    color: #00000040;
+    background: none;
+    border: none;
+    position: relative;
+    font-size: 30px;
+    width: 20%;
+    margin-left: 40%;
+    margin-right: 20%;
+
+}
+
+.restartBtn:hover {
+    color: #00000070;
+
+}
+
+
+
+.nextBtn {
+    font-size: 20px;
+    cursor: pointer;
+    text-align: left;
+
+}
+
+.fa-check {
+    color: #ffffff00;
+    border: 2px solid white;
+    border-radius: 50%;
+    font-size: 15px;
+    padding: 4px;
+    margin-right: 10px;
+}
+
+.answer-box {
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+.nextBtn:hover .fa-check {
+    color: #fed136;
+
+}
+
+.portfolio-modal .modal-content .description {
+
+    text-align: left;
+}
+
+.btn-primary {
+    background-color: #00000070 !important;
+    border-color: #fed035;
+}
+
+.bg-light{
+    background-color: #00000070 !important;
+
+}
+
+.mid {
+    background-color: #00000020;
+    min-height: 768px;
+
+}
+
+#wizard {
+
+    padding-top: 60px;
+}
+/* for slideshow */
+.myCarousel .list-inline {
+    white-space:nowrap;
+    overflow-x:auto;
+}
+
+.myCarousel .carousel-indicators {
+    position: static;
+    left: initial;
+    width: initial;
+    margin-left: initial;
+}
+
+.myCarousel .carousel-indicators > li {
+    width: initial;
+    height: initial;
+    text-indent: initial;
+}
+
+.myCarousel .carousel-indicators > li.active img {
+    opacity: 0.7;
+}
+
+/* for gallery */
+
+
+.container.gallery-container {
+    background-color: #fff;
+    color: #35373a;
+    min-height: 100vh;
+    padding: 30px 50px;
+}
+
+.gallery-container h1 {
+    text-align: center;
+    margin-top: 50px;
+    font-family: 'Droid Sans', sans-serif;
+    font-weight: bold;
+}
+
+.gallery-container p.page-description {
+    text-align: center;
+    margin: 25px auto;
+    font-size: 18px;
+    color: #999;
+}
+
+.tz-gallery {
+    padding: 40px;
+}
+
+/* Override bootstrap column paddings */
+.tz-gallery .row > div {
+    padding: 2px;
+}
+
+.tz-gallery .lightbox img {
+    width: 100%;
+    border-radius: 0;
+    position: relative;
+    margin-bottom: 0px !important; 
+}
+
+.tz-gallery .lightbox:before {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -13px;
+    margin-left: -13px;
+    opacity: 0;
+    color: #fff;
+    font-size: 26px;
+    /*font-family: "Font Awesome 5 Free";*/
+    /*content: "\f002";*/
+    pointer-events: none;
+    z-index: 9000;
+    transition: 0.4s;
+}
+
+
+.tz-gallery .lightbox:after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    background-color: rgba(46, 132, 206, 0.7);
+    content: '';
+    transition: 0.4s;
+}
+
+.tz-gallery .lightbox:hover:after,
+.tz-gallery .lightbox:hover:before {
+    opacity: 1;
+}
+
+.baguetteBox-button {
+    background-color: transparent !important;
+}
+
+@media(max-width: 768px) {
+    body {
+        padding: 0;
+    }
+}
+
+.baguetteBox-button {
+    outline: none !important;
+    z-index: 10;
+}

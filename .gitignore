@@ -1,0 +1,17 @@
+*.pyc
+
+.DS_Store
+*.json
+
+### Python ###
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+
+
+# Django stuff:
+*.log
+/tide/settings/local
+db.sqlite3
