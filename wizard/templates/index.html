@@ -11,6 +11,8 @@
 
 {% block content %}
 
+{% load static %}
+
   
 
   <!-- Services -->
@@ -56,8 +58,96 @@
   </section>
 
 
+
+<!-- About -->
+  <section class="bg-light" id="how">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <h2 class="section-heading text-uppercase">How it works</h2>
+          <h3 class="section-subheading text-muted">It's super simple.</h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12">
+          <ul class="timeline">
+
+            <li>
+              <div class="timeline-image">
+                <!--<div class="rounded-circle img-fluid" > <i class="fas fa-question fa-3x"></i></div>-->
+                <!--<i class="fas fa-question fa-3x" style="vertical-align: middle;"></i>-->
+                <!--<span class="fa-stack fa-4x">-->
+            	<!--<i class="fas fa-circle fa-stack-2x text-primary"></i>-->
+            	<img class="rounded-circle img-fluid" src="{% static 'img/about/1.jpg' %}" alt="">
+
+          		<!--</span>-->
+              </div>
+
+              <div class="timeline-panel">
+                <div class="timeline-heading">
+                  <h4></h4>
+                  <h4 class="subheading">Answer some questions</h4>
+                </div>
+                <div class="timeline-body">
+                  <p class="text-muted">By answering a couple of questions you help us understand what you are looking for.</p>
+                </div>
+              </div>
+            </li>
+            <li class="timeline-inverted">
+              <div class="timeline-image">
+                <img class="rounded-circle img-fluid" src="{% static 'img/about/2.jpg' %}" alt="">
+              </div>
+              <div class="timeline-panel">
+                <div class="timeline-heading">
+                  <h4></h4>
+                  <h4 class="subheading">Get recommendations</h4>
+                </div>
+                <div class="timeline-body">
+                  <p class="text-muted">Based on your answers and our knowledge of different surf destinations we'll present a selection of destinations that fit your needs!</p>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="timeline-image">
+                <img class="rounded-circle img-fluid" src="{% static 'img/about/3.jpg' %}" alt="">
+              </div>
+              <div class="timeline-panel">
+                <div class="timeline-heading">
+                  <h4></h4>
+                  <h4 class="subheading">Browse destinations</h4>
+                </div>
+                <div class="timeline-body">
+                  <p class="text-muted">Get info about the recommended destinations and figure out why they would be a good choice for you.</p>
+                </div>
+              </div>
+            </li>
+            <li class="timeline-inverted">
+              <div class="timeline-image">
+                <img class="rounded-circle img-fluid" src="{% static 'img/about/4.jpg' %}" alt="">
+              </div>
+              <div class="timeline-panel">
+                <div class="timeline-heading">
+                  <h4></h4>
+                  <h4 class="subheading">Find activity providers</h4>
+                </div>
+                <div class="timeline-body">
+                  <p class="text-muted">When you find one or more destinations you like, select them and we will send you information about activity providers located there.</p>
+                </div>
+              </div>
+            </li>
+            <li class="timeline-inverted">
+              <div class="timeline-image">
+                <h4>Pack<br>your<br>bags!</h4>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
 <!-- Team -->
-  <section class="bg-light" id="team">
+
+  <section  id="team">
     <div class="container">
       <div class="row">
         <div class="col-lg-12 text-center">
@@ -69,7 +159,7 @@
         
         <div class="col-sm-6">
           <div class="team-member">
-            <img class="mx-auto rounded-circle" src="img/team/2.jpg" alt="">
+            <img class="mx-auto rounded-circle" src="{% static 'img/team/fred.jpg' %}" alt="">
             <h4>Fredrik Malmberg</h4>
             <p class="text-muted">Keyboard Jockey</p>
             <!--<ul class="list-inline social-buttons">
@@ -93,7 +183,7 @@
         </div>
         <div class="col-sm-6">
           <div class="team-member">
-            <img class="mx-auto rounded-circle" src="img/team/3.jpg" alt="">
+            <img class="mx-auto rounded-circle" src="{% static 'img/team/mattias.jpg' %}" alt="">
             <h4>Mattias Lindmark</h4>
             <p class="text-muted">Surfer Dude</p>
             <!--<ul class="list-inline social-buttons">
@@ -125,8 +215,6 @@
   </section>
 
 
-
-
 <!-- Hidden input form <div id="demo"></div>
 <form action="" id="form" method="post">
 	{% for q in questions %}
@@ -149,7 +237,7 @@ $(document).ready(function(){
 	{% for q in questions %}
       {% for answer in q.answer_set.all %}
     $(".check_answer_{{answer.id}}").click(function(){
-    	console.log(".answer_{{answer.text}}");
+    	mixpanel.track("clicked answer", {"Question" : "{{q}}", "Answer" : "{{answer.text}}"});
         $("#answer_{{answer.id}}").prop("checked", true);
     });
     {% endfor %}
@@ -170,15 +258,42 @@ function showForm() {
   document.getElementById("demo").innerHTML = text;
 }
 
+//Track start and finish
+$( ".wizStart" ).click(function(e) {
+	mixpanel.track("wizard started");
+});
+
+$( ".btnSubmit" ).click(function(e) {
+	mixpanel.track("wizard completed");
+});
+
+$( ".restartBtn" ).click(function(e) {
+	mixpanel.track("wizard restarted");
+});
+
+
+//Track destination
+
+
+$(".portfolio-link").click(function(e) {
+  
+  //console.log("Clicked Destination", {"Destination ID" : e.target.id});
+  //console.log(e.target.id);
+  var currentId = jQuery(this).attr("id");
+  //console.log(currentId);
+  mixpanel.track("clicked destination", {"Destination ID" : currentId});
+
+});  
+
 
 //MAKE IT SLIDE
 $( ".nextBtn" ).click(function(e) {
 	goRight();
-	mixpanel.track("answered question");
 });
 $( ".backBtn" ).click(function(e) {
 	goLeft();
-	mixpanel.track("went back");
+	mixpanel.track("Clicked back");
+	
 });
 $( ".undim" ).click(function(e) {
 	$(".color-overlay").css("background-color", "rgba(8, 8, 8, 0.20)");
@@ -190,7 +305,7 @@ function goRight(){ // inner stuff slides left
     $(".color-overlay").css("background-color", "rgba(8, 8, 8, 0.50)");
 	var initalLeftMargin = $( ".innerLiner" ).css('margin-left').replace("px", "")*1;
 	var newLeftMargin = (initalLeftMargin - $( ".innerLiner" ).width()/{{num_questions}})-4; // extra 2 for border
-	console.log(newLeftMargin)
+	//console.log(newLeftMargin)
 	//$( ".innerLiner" ).animate({marginLeft: newLeftMargin}, 500);
 	$( ".innerLiner" ).animate({ marginLeft: newLeftMargin }, 700, 'easeOutCirc');
 }

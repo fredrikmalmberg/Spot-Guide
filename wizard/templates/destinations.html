@@ -30,8 +30,16 @@
         <h3 class="section-subheading text-muted">
           {% if destinations.all|length == 0 %}
         No destinations found.. :(
+        <script type="text/javascript">
+        window.onload = mixpanel.track("no destinations found");
+        </script>
+
         {% else %}
+
         We found {{ destinations.all|length}} awesome destinations for you
+        <script type="text/javascript">
+        window.onload = mixpanel.track("destinations loaded", {"Number of destinations" : "{{ destinations.all|length}}"});
+        </script>
         {% endif %}
 
 
@@ -43,7 +51,7 @@
 
       {% for d in destinations%}
       <div class="col-md-4 col-sm-6 portfolio-item">
-        <a class="portfolio-link" data-toggle="modal" href="#portfolioModal{{d.id}}">
+        <a class="portfolio-link" data-toggle="modal" href="#portfolioModal{{d.id}}" id="{{d.name}}">
           <div class="portfolio-hover">
             <div class="portfolio-hover-content">
               <i class="fas fa-plus fa-3x"></i>
@@ -204,6 +212,8 @@
     </div>
   </div>
   {%endfor%}
+
+
 
 
 

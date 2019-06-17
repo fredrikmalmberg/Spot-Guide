@@ -16,7 +16,7 @@
               <div class="intro-lead-in"></div>
                     <div class="intro-heading text-uppercase">Find your surf destination</div>
               
-              <div class="btn btn-primary btn-xl text-uppercase js-scroll-trigger nextBtn" >Lets go!</div>
+              <div class="btn btn-primary btn-xl text-uppercase js-scroll-trigger nextBtn wizStart" >Lets go!</div>
               
             </span>
 
@@ -43,7 +43,7 @@
               {% for answer in q.answer_set.all %}
               <br>
                     
-              <div class="check_answer_{{answer.id}} nextBtn"><i class="fas fa-check"></i> <span>{{answer.text }}</span></div>
+              <div id="test" class="check_answer_{{answer.id}} nextBtn"><i class="fas fa-check"></i> <span>{{answer.text }}</span></div>
               {% endfor %}
                 </div>
               
@@ -67,9 +67,9 @@
                 </fieldset>
                 {% endfor %}
                 <br>
-                <input type="email" name="email" id="email" size="30">
+                <input type="email" name="email" id="email" size="30" style="width: 100%">
                         <br><br><br>Show me my destinations
-                <br><br><button class="btn btn-primary btn-xl text-uppercase" type="submit">Go!</button>
+                <br><br><button class="btn btn-primary btn-xl text-uppercase btnSubmit" type="submit">Go!</button>
                 <br><br><div class="backBtn fas fa-arrow-left"></div>
               </form>
             </span>
@@ -84,5 +84,7 @@
 </div>
 </div>
   </header>
-
+<script type="text/javascript">
+  window.onload = mixpanel.track("wizard loaded");
+</script>
   {% endif %}

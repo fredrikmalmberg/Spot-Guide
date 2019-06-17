@@ -2,7 +2,7 @@
 <html>
 <head>
    {% load static %}
-   
+   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
    <link rel="stylesheet" href="{% static 'css/basic.css' %}">
    <!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">-->
    <!-- Start Agency -->
@@ -43,7 +43,7 @@ mixpanel.init("891a74617404f11e92cf9c6d1492ea5e");</script><!-- end Mixpanel -->
    {% block navigation %}
    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
       <div class="container">
-         <a class="navbar-brand js-scroll-trigger" href="{% url 'index' %}">spot</a>
+         <a class="navbar-brand js-scroll-trigger" href="{% url 'index' %}">spot guide</a>
          <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             Menu
             <i class="fas fa-bars"></i>
@@ -64,6 +64,10 @@ mixpanel.init("891a74617404f11e92cf9c6d1492ea5e");</script><!-- end Mixpanel -->
                   <a class="nav-link js-scroll-trigger" href="{% url 'index' %}#services">About</a>
                </li>
 
+               <li class="nav-item">
+                  <a class="nav-link js-scroll-trigger" href="{% url 'index' %}#how">How it works</a>
+               </li>
+
                
                <!--<li class="nav-item">
                   <a class="nav-link js-scroll-trigger" href="#about">About</a>
@@ -71,9 +75,9 @@ mixpanel.init("891a74617404f11e92cf9c6d1492ea5e");</script><!-- end Mixpanel -->
                <li class="nav-item">
                   <a class="nav-link js-scroll-trigger" href="#team">Team</a>
                </li>
-               <li class="nav-item">
+               <!--<li class="nav-item">
                   <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
-               </li>
+               </li>-->
             </ul>
          </div>
       </div>
@@ -104,7 +108,7 @@ mixpanel.init("891a74617404f11e92cf9c6d1492ea5e");</script><!-- end Mixpanel -->
         <div class="col-md-4">
           <span class="copyright">Copyright &copy; Spot Guide 2019</span>
        </div>
-       <div class="col-md-4">
+       <!--<div class="col-md-4">
           <ul class="list-inline social-buttons">
             <li class="list-inline-item">
               <a href="#">
@@ -122,8 +126,8 @@ mixpanel.init("891a74617404f11e92cf9c6d1492ea5e");</script><!-- end Mixpanel -->
        </a>
     </li>
  </ul>
-</div>
-<div class="col-md-4">
+</div>-->
+<!--<div class="col-md-4">
  <ul class="list-inline quicklinks">
    <li class="list-inline-item">
      <a href="#">Privacy Policy</a>
@@ -132,7 +136,7 @@ mixpanel.init("891a74617404f11e92cf9c6d1492ea5e");</script><!-- end Mixpanel -->
      <a href="#">Terms of Use</a>
   </li>
 </ul>
-</div>
+</div>-->
 </div>
 </div>
 </footer>
@@ -144,10 +148,7 @@ mixpanel.init("891a74617404f11e92cf9c6d1492ea5e");</script><!-- end Mixpanel -->
 <!-- Bootstrap core JavaScript -->
 <!--<script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>-->
 <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
-<script type="text/javascript">
-  window.onload = mixpanel.track(document.title);
-  console.log(document.title);
-</script>
+
    <!--<script
    src="https://code.jquery.com/jquery-3.4.1.min.js"
    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
