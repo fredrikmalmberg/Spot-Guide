@@ -8,7 +8,10 @@
 }
 
 .color-overlay {
-    background: rgba(8, 8, 8, 0.22);  
+    background: rgba(8, 8, 8, 0.22);
+      -webkit-transition: all 0.3s;
+      -moz-transition: all 0.3s;
+      transition: all 0.3s; 
 }
 .box{
     display: inline-block;
@@ -17,6 +20,7 @@
     height: 411px;
     vertical-align: top;
     white-space: normal;
+    overflow: hidden;
 }
 @media (min-width: 992px) {
     .framed {
@@ -25,13 +29,14 @@
 }
 
 .framed {
+
     padding: 30px;
     
     height: 100%;
     display: block;
     margin-left: auto;
     margin-right: auto;
-    background: #00000080;
+    /*background: #00000080;*/
     /* border-radius: 11px; */
     position: relative;
     /* border: 1px solid #fed035; */
