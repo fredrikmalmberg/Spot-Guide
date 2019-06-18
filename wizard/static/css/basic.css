@@ -4,8 +4,7 @@
 .mycontainer{
     white-space: nowrap;
     overflow-x: hidden;
-    width: 100%;
-    
+    width: 100%;    
 }
 
 .color-overlay {
@@ -18,11 +17,9 @@
     height: 411px;
     vertical-align: top;
     white-space: normal;
-    
 }
 @media (min-width: 992px) {
     .framed {
-    
     width: 50%;
 }
 }
