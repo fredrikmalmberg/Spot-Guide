@@ -132,7 +132,9 @@ STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static")
 
 SASS_PROCESSOR_ROOT = STATIC_ROOT
 MEDIA_URL = '/media/'
+#MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), "media")
 MEDIA_ROOT = os.path.join(BASE_DIR, 'wizard/media/')
+print(MEDIA_ROOT)
 
 #EASY_MAPS_GOOGLE_KEY = 'AIzaSyCVLiTqt9ukyVy09Zlq-cfnaq4VQg5jMnk'
 #EASY_MAPS_CENTER = (-41.3, 32)

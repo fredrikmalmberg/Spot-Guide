@@ -36,8 +36,10 @@ def index(request):
         box_width = 100/(num_questions)
         progress_width = 100/(num_questions-2)
         if request.session.get('_known') == True:
-            #print("we know this person")
+            print("we know this person")
             persona = find_persona(old_post)
+            for d in Destination.objects.filter(persona=persona):
+                print(d.main_image)
             context = {'destinations' : Destination.objects.filter(persona=persona), 'progress_width': progress_width,'box_width': box_width, 'known': request.session['_known'], 'form': form, 'questions' : Question.objects.all().order_by('-priority'), 'num_questions' : num_questions}
 
             
@@ -63,6 +65,7 @@ def embedded_wizard(request):
 def destinations(request):
 #    old_post = request.session.get('_old_post')
 #    persona = find_persona(old_post)
+
     context = {'destinations' : Destination.objects.all() }
     return render(request, 'all_destinations.html', context=context)
 

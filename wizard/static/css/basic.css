@@ -116,6 +116,9 @@
     font-size: 15px;
     padding: 4px;
     margin-right: 10px;
+    -webkit-transition: all 0.3s;
+      -moz-transition: all 0.3s;
+      transition: all 0.3s; 
 }
 
 .answer-box {
@@ -126,7 +129,8 @@
 }
 
 .nextBtn:hover .fa-check {
-    color: #fed136;
+    /*color: #fed136;*/
+    background-color: #fed136;
 
 }
 
